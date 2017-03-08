@@ -5,7 +5,15 @@
 
 (function () { // Beginning of the IIFE
 
-let mainNav = document.getElementById("mainNav");
+// App entry point
+function Start() {
+  LoadNavBar();
+  LoadPageContent();
+}
+
+// Loads the Main Navigation using AJAX
+function LoadNavBar() {
+  let mainNav = document.getElementById("mainNav");
     let navbarHTML;
 
     // STEP 1 - need an XHR object
@@ -45,12 +53,29 @@ let mainNav = document.getElementById("mainNav");
         break;
       }
     });
+}
 
 
+// Loads the Content for each page using the Document Title
+function LoadPageContent() {
   switch (document.title) {
     case "Home":
+      LoadHomePage();
+      break;
 
-      let data = {};
+    case "Projects":
+      LoadProjectsPage();
+      break;
+
+    case "Contact":
+      LoadContactPage();
+      break;
+  }
+}
+
+// Loads the content of the Home Page
+function LoadHomePage() {
+  let data = {};
 
       // STEP 1 - instantiate an XHR object
       let XHR = new XMLHttpRequest();
@@ -86,15 +111,11 @@ let mainNav = document.getElementById("mainNav");
         }, this);
 
       });
+}
 
-
-
-
-      break;
-
-    case "Projects":
-
-      // Step 1 - Setup references to the elements you need to hook into
+// Loads the content for the projects page
+function LoadProjectsPage() {
+  // Step 1 - Setup references to the elements you need to hook into
       let HideButton = document.getElementById("HideButton");
       let HalfSizeButton = document.getElementById("HalfSizeButton");
       let ThreeQuarterSizeButton = document.getElementById("ThreeQuarterSizeButton");
@@ -132,11 +153,11 @@ let mainNav = document.getElementById("mainNav");
             break;
         }
       }
+}
 
-      break;
-
-    case "Contact":
-      let FullName = document.getElementById("FullName");
+// Loads the Content for the Contact Page
+function LoadContactPage() {
+  let FullName = document.getElementById("FullName");
       let ContactNumber = document.getElementById("ContactNumber");
       let Email = document.getElementById("Email");
       let Message = document.getElementById("Message");
@@ -151,11 +172,11 @@ let mainNav = document.getElementById("mainNav");
         console.log(Message);
 
       });
+}
 
-      break;
-  }
 
-  let myVariable = 500;
+  // call the Start function when the window loads
+  window.onload = Start; // Start is the callback function / event handler
 
 })(); // end of the IIFE
 
