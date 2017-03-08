@@ -75,6 +75,76 @@ function LoadPageContent() {
 
 // Loads the content of the Home Page
 function LoadHomePage() {
+
+  // Date Class Examples
+  let today = new Date();
+
+  let months = ["January", "February", "March", "April", "May",
+                "June", "July", "August", "September", "October", "November", "December"];
+
+  let day = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
+  let currentMonth = months[today.getMonth()];
+  let currentDay = day[today.getDay()];
+
+  console.log(currentDay + " " + currentMonth + " " + today.getDate() + ", " + today.getFullYear());
+
+  // Number Examples
+  let myNumber = 10003.14157826;
+
+  console.log(myNumber.toFixed(4));
+  console.log(myNumber.toString());
+  console.log(myNumber.toLocaleString());
+
+  // Math Examples
+  let die1 = Math.floor(Math.random() * 6) + 1;
+  console.log(die1);
+  let die2 = Math.floor(Math.random() * 6) + 1;
+  console.log(die2);
+  let dice = die1 + die2; // 2 six-sided dice
+  console.log(dice);
+
+
+let Point = (function(){
+  // Point class constructor
+  function Point(x, y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  // Normalize method
+    Point.prototype.Normalize = function() {
+      this.x = 1;
+      this.y = 1;
+    }
+
+  // Zero method
+    Point.prototype.Zero = function() {
+      this.x = 0;
+      this.y = 0;
+    }
+
+    // static method Distance
+     Point.Distance = function (p1, p2) {
+        return Math.sqrt(Math.pow((p2.x - p1.x), 2) + Math.pow((p2.y - p1.y), 2));
+    };
+
+    return Point;
+})();
+
+
+
+  // first point
+  let Point1 = new Point(10, 10);
+
+  // second point
+  let Point2 = new Point(20, 20);
+
+  // calculate distance between two points
+  let distance = Point.Distance(Point1, Point2);
+  console.log(distance);
+
+
   let data = {};
 
       // STEP 1 - instantiate an XHR object
